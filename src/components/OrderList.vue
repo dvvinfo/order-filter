@@ -38,7 +38,7 @@ interface Order {
 const orders = ref<Order[]>([])
 const orderModal = ref<InstanceType<typeof OrderModal> | null>(null)
 const loading = ref(false)
-const token = import.meta.env.VITE_API_TOKEN
+const token = import.meta.env.VITE_APP_API_TOKEN
 const fetchOrders = async () => {
   loading.value = true
   try {
