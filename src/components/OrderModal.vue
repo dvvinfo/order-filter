@@ -8,10 +8,15 @@
       <p>Дата доставки: {{ order.shipment.date }}</p>
       <p>Метод оплаты: {{ order.payment.method.title }}</p>
       <p>Магазин: {{ order.shop.title }}</p>
-      <p>Имя клиента: {{ order.client.firstname }}</p>
-      <p>Фамилия клиента: {{ order.client.lastname }}</p>
-      <p>Сумма: {{ order.amount }}</p>
-      <p>Количество: {{ order.quantity }}</p>
+      <p>
+        ФИО клиента: {{ order.client.firstname }} {{ order.client.lastname }}
+      </p>
+      <p>Телефон клиента: {{ order.client.phone }}</p>
+      <div class="" v-for="item in order.items" :key="item.id">
+        <p>Сумма: {{ item.price }}</p>
+        <p>Количество: {{ item.quantity }}</p>
+      </div>
+
       <p>Оператор: {{ order.operator }}</p>
     </div>
     <div v-else>
@@ -36,10 +41,12 @@ interface Order {
   shipment: { method: { title: string }; date: string }
   payment: { method: { title: string } }
   shop: { title: string }
-  client: { firstname: string; lastname: string }
+  client: { firstname: string; lastname: string; phone: string }
   amount: number
   quantity: number
   operator: string
+  items: { price: number; quantity: number; id: number }[]
+  phone: string
 }
 
 const visible = ref(false)
